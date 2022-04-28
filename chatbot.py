@@ -1,6 +1,7 @@
 
 #Meet Robo: your friend
 
+
 #import necessary libraries
 import io
 import random
@@ -21,15 +22,23 @@ nltk.download('popular', quiet=True) # for downloading packages
 #nltk.download('wordnet') # first-time use only
 
 
+
 #Reading in the corpus
+
 with open('chatbot.txt','r', encoding='utf8', errors ='ignore') as fin:
     raw = fin.read().lower()
 
+    
+    
 #TOkenisation
+
 sent_tokens = nltk.sent_tokenize(raw)# converts to list of sentences 
 word_tokens = nltk.word_tokenize(raw)# converts to list of words
 
+
+
 # Preprocessing
+
 lemmer = WordNetLemmatizer()
 def LemTokens(tokens):
     return [lemmer.lemmatize(token) for token in tokens]
@@ -38,7 +47,9 @@ def LemNormalize(text):
     return LemTokens(nltk.word_tokenize(text.lower().translate(remove_punct_dict)))
 
 
+
 # Keyword Matching
+
 GREETING_INPUTS = ("hello", "hi", "greetings", "sup", "what's up","hey",)
 GREETING_RESPONSES = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me"]
 
@@ -49,7 +60,9 @@ def greeting(sentence):
             return random.choice(GREETING_RESPONSES)
 
 
+        
 # Generating response
+
 def response(user_response):
     robo_response=''
     sent_tokens.append(user_response)
@@ -70,6 +83,7 @@ def response(user_response):
 
 flag=True
 print("ROBO: My name is Robo. I will answer your queries about Chatbots. If you want to exit, type Bye!")
+
 while(flag==True):
     user_response = input()
     user_response=user_response.lower()
